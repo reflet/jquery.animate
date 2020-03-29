@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery animate :: Sample</title>
+  <style type="text/css">
+    body{ font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+    #hoge  { width:402px; height:454px; background-color:#FFB6C1; border:solid 1px #ccc;}
+    #hoge1 { width:400px; height:50px; background-color:#FFEC8B; border:solid 1px #ccc;}
+    #hoge2 { width:400px; height:400px; background-color:#A4D3EE; border:solid 1px #ccc;}
+  </style>
+</head>
+<body>
+  <input type="button" value="メニューを隠す" id="btn1">
+  <div id="hoge">
+    <div id="hoge1">テキスト</div>
+    <div id="hoge2">テキスト</div>
+  </div>
+
+  <script src="./js/lib/jquery-1.7.1.min.js"></script>
+  <script src="./js/lib/jquery-ui-1.8.18.custom.min.js"></script>
+  <script>
+    (function($) {
+      var reflet;
+      $(function() {
+        $("#btn1").click(function () {
+          reflet.menuDisp('#hoge1', '#hoge2');
+        });
+      });
+      reflet = {
+        'menuDisp':function(elem1, elem2) {
+          var e1 = $(elem1), 
+              e2 = $(elem2),
+              a = e1.outerHeight(),
+              b = parseInt(e2.css('height'));
+          
+          if (e1.css('display') !== 'none') {
+            // 非表示
+            e1.slideUp(300);
+            e2.animate({height: (a + b) + 'px'},　300);
+          } else {
+            // 表示
+            e1.slideDown(300);
+            e2.animate({height: (b - a) + 'px'},　300);
+          }
+        }
+      };
+    })(jQuery);
+  </script>
+</body>
+</html>
+
